@@ -3,7 +3,7 @@
 import sys
 
 def solve(n):
-    for i in range(n//1000, 100, -1):
+    for i in range(n // 1000, 100, -1):
         num = int(str(i) + str(i)[::-1])
         if num < n:
             for i2 in range(100,1000):
