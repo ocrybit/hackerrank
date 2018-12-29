@@ -1,4 +1,5 @@
 #!/bin/python3
+import math
 import sys
 
 def getPrimeArr(n):
@@ -16,15 +17,18 @@ def getPrimeArr(n):
         i += 1
     return nums
 
-def getPrimes(n):
-    primes = []
-    for i ,v in enumerate(getPrimeArr(n)):
-        if v: primes.append(i)
-    return primes
+def getPrimeSums(n):
+    primes_sum = 0
+    sums = []
+    for i, v in enumerate(getPrimeArr(n)):
+        if v: primes_sum += i
+        sums.append(primes_sum)    
+    return sums
 
-primes = getPrimes(104750)
+sums = getPrimeSums(1000000)
 
-def solve(n): return primes[n - 1]
+def solve(n): return sums[n]
+    
 
 t = int(input().strip())
 for a0 in range(t):
