@@ -1,12 +1,11 @@
 #!/bin/python3
 import sys
 
-def sum(n,m):
-    q = (n - 1) // m
-    l = m * q
-    return (q * (m + l)) // 2
-
-def solve(n): return sum(n, 3) + sum(n, 5) - sum(n, 15)
+def solve(n):
+    def s(m):
+        q = (n - 1) // m
+        return q * m * (1 + q) // 2
+    return s(3) + s(5) - s(15)
 
 t = int(input().strip())
 for a0 in range(t):

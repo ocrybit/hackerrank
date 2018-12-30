@@ -1,38 +1,30 @@
 #!/bin/python3
 
 import sys
-
-def getFactors(n):
-    factors = {}
-    d = 2
-    q = n
-    lpf = 0
-    while d ** 2 <= n:
-        if q % d == 0:
-            lpf = d
-            q //= d
-            if not d in factors: factors[d] = 0
-            factors[d] += 1
-            
-        else:
-            d += 1
-    if not q in factors: factors[q] = 0
-    factors[q] += 1    
-    return factors
+import math
 
 def solve(n):
-    nums = {}
-    for i in range(n, 0, -1):
-        factors = getFactors(i)
-        for key, val in factors.items():
-            if not key in nums: nums[key] = 0
-            nums[key] = max(nums[key], val)
-    prod = 1
-    for key, val in nums.items():
-        prod *= (key ** val)
-    return prod
+    gcd = 1
+    if n == 1: return gcd
+    nums = list(range(2, n + 1))
+    while nums[0] ** 2 <= n:
+        nums_copy = nums.copy()
+        num = nums.pop(0)
+        gcd *= num    
+        next_pow = pow(num, 2)    
+        for i in nums_copy:
+            if i * num <= n:
+                nums.remove(i * num)
+                if next_pow == i * num:
+                    gcd *= num
+                    next_pow *= num
+            else: break
+    for i in nums:
+        gcd *= i
+    return gcd
+
 
 t = int(input().strip())
 for a0 in range(t):
     n = int(input().strip())
-    print(solve(n))
+    print(len(str(solve(n))))
