@@ -1,28 +1,21 @@
 #!/bin/python3
 import sys
 
-def getPrimeArr(n):
-    nums = [None] * (n + 1)
-    nums[0] = False
-    nums[1] = False
-    i = 2
-    while i <= n:
-        if nums[i] != False:
-            nums[i] = True
-            prod = i * 2
-            while prod <= n:
-                nums[prod] = False
-                prod += i
-        i += 1
-    return nums
-
 def getPrimes(n):
+    nums = list(range(2, n + 1))    
     primes = []
-    for i ,v in enumerate(getPrimeArr(n)):
-        if v: primes.append(i)
-    return primes
+    while nums[0] ** 2 <= n:
+        num = nums.pop(0)
+        primes.append(num)
+        i = 0
+        while i < len(nums):
+            if nums[i] % num == 0:
+                nums.pop(i)
+                i -= 1
+            i += 1
+    return primes + nums
 
-primes = getPrimes(104750)
+primes = getPrimes(104729)
 
 def solve(n): return primes[n - 1]
 
