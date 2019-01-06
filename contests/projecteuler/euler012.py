@@ -43,7 +43,7 @@ def combi(factors):
         c *= (n + 1)
     return c
 
-def getPrimeFactors(n):
+def getSolutions(n):
     max_num_factors = 1
     solutions = [0]
     triangle_sum = 1
@@ -59,7 +59,7 @@ def getPrimeFactors(n):
         num += 1
     return solutions
 
-solutions = getPrimeFactors(10 ** 3)
+solutions = getSolutions(10 ** 3)
 
 def solve(n):
     return solutions[n]
