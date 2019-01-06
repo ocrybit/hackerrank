@@ -45,7 +45,7 @@ def combi(factors):
 
 def getPrimeFactors(n):
     max_num_factors = 1
-    factors_map = [0]
+    solutions = [0]
     triangle_sum = 1
     num = 2
     while max_num_factors <= n:
@@ -54,14 +54,15 @@ def getPrimeFactors(n):
         c = combi(factors)
         if max_num_factors < c:
             max_num_factors = max(max_num_factors, c)
-            while len(factors_map) < max_num_factors:
-                factors_map.append(triangle_sum)
+            while len(solutions) < max_num_factors:
+                solutions.append(triangle_sum)
         num += 1
-    return factors_map
+    return solutions
 
-factors_map = getPrimeFactors(10 ** 3)
+solutions = getPrimeFactors(10 ** 3)
+
 def solve(n):
-    return factors_map[n]
+    return solutions[n]
 
 t = int(input().strip())
 for a0 in range(t):
