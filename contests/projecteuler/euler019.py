@@ -9,14 +9,14 @@ def solve(d1, d2):
     for year in range(n1[0], n2[0] + 1):
         for month in range(1, 13):
             if year == n1[0] and month < n1[1]: continue
+            if year >= n2[0] and month > n2[1]: break
+            if year == n1[0] and month == n1[1] and n1[2] != 1: continue
             if month < 3:
                 y = year - 1
                 m = month + 12
             else:
                 y = year
                 m = month
-            if year >= n2[0] and month > n2[1]: break
-            if year == n1[0] and month == n1[1] and n1[2] != 1: continue
             if day(y, m, 1) == 0: s += 1
         if y >= n2[0]: break            
     return s
